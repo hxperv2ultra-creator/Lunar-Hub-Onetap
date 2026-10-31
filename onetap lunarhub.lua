@@ -9,7 +9,6 @@ local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
 local CorrectKey = "LUNAR-2026-KEY"
-local LinkvertiseLink = "https://link-center.net/10337065/vxxDoX1Ck0Ga"
 
 -- Key System GUI
 local KeySystemGui = Instance.new("ScreenGui")
@@ -18,8 +17,8 @@ KeySystemGui.ResetOnSpawn = false
 KeySystemGui.Parent = CoreGui
 
 local KeyFrame = Instance.new("Frame")
-KeyFrame.Size = UDim2.new(0, 340, 0, 220)
-KeyFrame.Position = UDim2.new(0.5, -170, 0.5, -110)
+KeyFrame.Size = UDim2.new(0, 340, 0, 210)
+KeyFrame.Position = UDim2.new(0.5, -170, 0.5, -105)
 KeyFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
 KeyFrame.BorderSizePixel = 0
 KeyFrame.Active = true
@@ -44,9 +43,26 @@ KeyTitle.TextSize = 14
 KeyTitle.Font = Enum.Font.GothamBold
 KeyTitle.Parent = KeyFrame
 
+-- Display Key Box (Shows the key directly)
+local ShowKeyBox = Instance.new("TextBox")
+ShowKeyBox.Size = UDim2.new(1, -40, 0, 32)
+ShowKeyBox.Position = UDim2.new(0, 20, 0, 42)
+ShowKeyBox.BackgroundColor3 = Color3.fromRGB(20, 20, 28)
+ShowKeyBox.Text = "Key: " .. CorrectKey
+ShowKeyBox.TextColor3 = Color3.fromRGB(160, 120, 255)
+ShowKeyBox.TextSize = 12
+ShowKeyBox.Font = Enum.Font.GothamBold
+ShowKeyBox.ClearTextOnFocus = false
+ShowKeyBox.TextEditable = false
+ShowKeyBox.Parent = KeyFrame
+
+local ShowKeyCorner = Instance.new("UICorner")
+ShowKeyCorner.CornerRadius = UDim.new(0, 8)
+ShowKeyCorner.Parent = ShowKeyBox
+
 local TextBox = Instance.new("TextBox")
 TextBox.Size = UDim2.new(1, -40, 0, 38)
-TextBox.Position = UDim2.new(0, 20, 0, 50)
+TextBox.Position = UDim2.new(0, 20, 0, 82)
 TextBox.BackgroundColor3 = Color3.fromRGB(26, 26, 34)
 TextBox.PlaceholderText = "Enter Key..."
 TextBox.Text = ""
@@ -62,7 +78,7 @@ BoxCorner.Parent = TextBox
 
 local SubmitBtn = Instance.new("TextButton")
 SubmitBtn.Size = UDim2.new(1, -40, 0, 38)
-SubmitBtn.Position = UDim2.new(0, 20, 0, 98)
+SubmitBtn.Position = UDim2.new(0, 20, 0, 130)
 SubmitBtn.BackgroundColor3 = Color3.fromRGB(130, 90, 255)
 SubmitBtn.Text = "Submit Key"
 SubmitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -74,30 +90,6 @@ SubmitBtn.Parent = KeyFrame
 local BtnCorner = Instance.new("UICorner")
 BtnCorner.CornerRadius = UDim.new(0, 8)
 BtnCorner.Parent = SubmitBtn
-
-local GetKeyBtn = Instance.new("TextButton")
-GetKeyBtn.Size = UDim2.new(1, -40, 0, 38)
-GetKeyBtn.Position = UDim2.new(0, 20, 0, 146)
-GetKeyBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
-GetKeyBtn.Text = "Get Key (Copy Link)"
-GetKeyBtn.TextColor3 = Color3.fromRGB(200, 200, 215)
-GetKeyBtn.TextSize = 13
-GetKeyBtn.Font = Enum.Font.GothamBold
-GetKeyBtn.AutoButtonColor = false
-GetKeyBtn.Parent = KeyFrame
-
-local GetKeyCorner = Instance.new("UICorner")
-GetKeyCorner.CornerRadius = UDim.new(0, 8)
-GetKeyCorner.Parent = GetKeyBtn
-
-GetKeyBtn.MouseButton1Click:Connect(function()
-    if setclipboard then
-        setclipboard(LinkvertiseLink)
-        GetKeyBtn.Text = "Link Copied to Clipboard!"
-        task.wait(2)
-        GetKeyBtn.Text = "Get Key (Copy Link)"
-    end
-end)
 
 SubmitBtn.MouseButton1Click:Connect(function()
     if TextBox.Text == CorrectKey then
@@ -532,5 +524,3 @@ function StartMainHub()
         end
     end)
 end
-
-
